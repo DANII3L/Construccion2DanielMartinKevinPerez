@@ -15,7 +15,8 @@ public class HistoryClinical {
 	private String vaccinationHistory;
 	private String drugAllergy;
 	private String detailProcedure;
-
+	private String orderCancellation;
+	
 	public Date getDate() {
 		return date;
 	}
@@ -119,6 +120,4 @@ public class HistoryClinical {
 	public void setOrderCancellation(String orderCancellation) {
 		this.orderCancellation = orderCancellation;
 	}
-
-	private String orderCancellation;
 }
