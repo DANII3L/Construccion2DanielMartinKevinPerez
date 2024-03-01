@@ -3,7 +3,7 @@ package app.models;
 public class Person {
 	private long id;
 	private String fullName;
-	private String rol;
+	private String roll;
 	private String username;
 	private String password;
 
@@ -23,12 +23,12 @@ public class Person {
 		this.fullName = fullName;
 	}
 
-	public String getRol() {
-		return rol;
+	public String getRoll() {
+		return roll;
 	}
 
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setRol(String roll) {
+		this.roll = roll;
 	}
 
 	public String getUsername() {
