@@ -1,8 +1,9 @@
-package app.models;
+package app.dto;
 
 import java.util.Date;
+import app.models.HistoryClinical;
 
-public class HistoryClinical {
+public class HistoryClinicalDto {
 	private Date date;
 	private long veterinarioId;
 	private String reasonConsult;
@@ -16,11 +17,44 @@ public class HistoryClinical {
 	private String drugAllergy;
 	private String detailProcedure;
 	private String orderCancellation;
-	
-	public HistoryClinical() {
-		this.date = new Date(System.currentTimeMillis());
+
+	public HistoryClinicalDto() {
 	}
-	
+
+	public HistoryClinicalDto(Date date, long veterinarioId, String reasonConsult, String symptomatology,
+			String diagnosis, String procedure, String medicament, String medicationDosage, String orderID,
+			String vaccinationHistory, String drugAllergy, String detailProcedure, String orderCancellation) {
+		this.date = date;
+		this.veterinarioId = veterinarioId;
+		this.reasonConsult = reasonConsult;
+		this.symptomatology = symptomatology;
+		this.diagnosis = diagnosis;
+		this.procedure = procedure;
+		this.medicament = medicament;
+		this.medicationDosage = medicationDosage;
+		this.orderID = orderID;
+		this.vaccinationHistory = vaccinationHistory;
+		this.drugAllergy = drugAllergy;
+		this.detailProcedure = detailProcedure;
+		this.orderCancellation = orderCancellation;
+	}
+
+	public HistoryClinicalDto(HistoryClinical historyClinical) {
+		this.veterinarioId = historyClinical.getVeterinarioId();
+		this.date = historyClinical.getDate();
+		this.reasonConsult = historyClinical.getReasonConsult();
+		this.symptomatology = historyClinical.getSymptomatology();
+		this.diagnosis = historyClinical.getDiagnosis();
+		this.procedure = historyClinical.getProcedure();
+		this.medicament = historyClinical.getMedicament();
+		this.medicationDosage = historyClinical.getMedicationDosage();
+		this.orderID = historyClinical.getOrderID();
+		this.vaccinationHistory = historyClinical.getVaccinationHistory();
+		this.drugAllergy = historyClinical.getDrugAllergy();
+		this.detailProcedure = historyClinical.getDetailProcedure();
+		this.orderCancellation = historyClinical.getOrderCancellation();
+	}
+
 	public Date getDate() {
 		return date;
 	}
