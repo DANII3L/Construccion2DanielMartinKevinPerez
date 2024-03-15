@@ -1,8 +1,10 @@
-package app.models;
+package app.dto;
 
 import java.sql.Date;
 
-public class Facture {
+import app.models.Facture;
+
+public class FactureDto {
 	private int id;
 	private int petId;
 	private long ownerId;
@@ -12,6 +14,27 @@ public class Facture {
 	private int amount;
 	private Date date;
 
+	public FactureDto(int petId, long ownerId, int orderId, String medicineName, double cost, int amount) {
+		this.petId = petId;
+		this.ownerId = ownerId;
+		this.orderId = orderId;
+		this.medicineName = medicineName;
+		this.cost = cost;
+		this.amount = amount;
+		this.date = new Date(System.currentTimeMillis());;
+	}
+	
+	public FactureDto(Facture facture) {
+		this.id = facture.getId();
+		this.petId = facture.getPetId();
+		this.ownerId = facture.getOwnerId();
+		this.orderId = facture.getOrderId();
+		this.medicineName = facture.getMedicineName();
+		this.cost = facture.getCost();
+		this.amount = facture.getAmount();
+		this.date = facture.getDate();
+	}
+	
 	public int getId() {
 		return id;
 	}

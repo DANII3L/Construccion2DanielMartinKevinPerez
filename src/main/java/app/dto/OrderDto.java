@@ -1,19 +1,36 @@
-package app.models;
+package app.dto;
 
 import java.sql.Date;
 
-public class Order {
+public class OrderDto {
 	private int id;
 	private int petId;
 	private long ownerID;
 	private long vetId;
 	private String medicineName;
 	private Date dateRegister;
-	
-	public Order() {
-		this.dateRegister = new Date(System.currentTimeMillis());
+
+	public OrderDto(int id, int petId, long ownerID, long vetId, String medicineName, Date dateRegister) {
+		this.id = id;
+		this.petId = petId;
+		this.ownerID = ownerID;
+		this.vetId = vetId;
+		this.medicineName = medicineName;
+		this.dateRegister = dateRegister;
 	}
 	
+	public OrderDto(int petId, long ownerID, long vetId, String medicineName, Date dateRegister) {
+		this.petId = petId;
+		this.ownerID = ownerID;
+		this.vetId = vetId;
+		this.medicineName = medicineName;
+		this.dateRegister = dateRegister;
+	}
+	
+	public OrderDto(int id) {
+		this.id = id;
+	}
+
 	public int getId() {
 		return id;
 	}

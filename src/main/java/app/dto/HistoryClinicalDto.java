@@ -1,8 +1,9 @@
-package app.models;
+package app.dto;
 
 import java.sql.Date;
+import app.models.HistoryClinical;
 
-public class HistoryClinical {
+public class HistoryClinicalDto {
 	private Date date;
 	private int petId;
 	private long vetId;
@@ -18,22 +19,48 @@ public class HistoryClinical {
 	private String detailProcedure;
 	private boolean orderCancellation;
 
-	public HistoryClinical(int petId, long vetId, String reasonConsult, String symptomatology, String diagnosis,
-			String procedure, String medicament, String vaccinationHistory, String medicationDosage,
-			String drugAllergy, String detailProcedure, boolean orderCancellation) {
-		this.petId = petId;
+	public HistoryClinicalDto() {
+	}
+	
+	public HistoryClinicalDto(int orderID) {
+		this.orderID = orderID;
+	}
+
+
+	public HistoryClinicalDto(long vetId, String reasonConsult, String symptomatology,
+			String diagnosis, String procedure, String medicament, String medicationDosage, int orderID,
+			String vaccinationHistory, String drugAllergy, String detailProcedure, boolean orderCancellation, Date date, int petId) {
+		this.date = date;
 		this.vetId = vetId;
 		this.reasonConsult = reasonConsult;
 		this.symptomatology = symptomatology;
 		this.diagnosis = diagnosis;
 		this.procedure = procedure;
 		this.medicament = medicament;
-		this.vaccinationHistory = vaccinationHistory;
 		this.medicationDosage = medicationDosage;
+		this.orderID = orderID;
+		this.vaccinationHistory = vaccinationHistory;
 		this.drugAllergy = drugAllergy;
 		this.detailProcedure = detailProcedure;
 		this.orderCancellation = orderCancellation;
-		this.date = new Date(System.currentTimeMillis());
+		this.petId = petId;
+	}
+	
+	public HistoryClinicalDto(HistoryClinical historyClinical) {
+		this.date = historyClinical.getDate();
+		this.vetId = historyClinical.getVetId();
+		this.reasonConsult = historyClinical.getReasonConsult();
+		this.symptomatology = historyClinical.getSymptomatology();
+		this.diagnosis = historyClinical.getDiagnosis();
+		this.procedure = historyClinical.getProcedure();
+		this.medicament = historyClinical.getMedicament();
+		this.medicationDosage = historyClinical.getMedicationDosage();
+		this.orderID = historyClinical.getOrderID();
+		this.vaccinationHistory = historyClinical.getVaccinationHistory();
+		this.drugAllergy = historyClinical.getDrugAllergy();
+		this.detailProcedure = historyClinical.getDetailProcedure();
+		this.orderCancellation = historyClinical.getOrderCancellation();
+		this.petId = historyClinical.getPetId();
 	}
 
 	public Date getDate() {
@@ -91,7 +118,7 @@ public class HistoryClinical {
 	public void setMedicament(String medicament) {
 		this.medicament = medicament;
 	}
-
+	
 	public int getOrderID() {
 		return orderID;
 	}
@@ -107,7 +134,7 @@ public class HistoryClinical {
 	public void setVaccinationHistory(String vaccinationHistory) {
 		this.vaccinationHistory = vaccinationHistory;
 	}
-
+	
 	public String getMedicationDosage() {
 		return medicationDosage;
 	}
@@ -139,7 +166,7 @@ public class HistoryClinical {
 	public void setOrderCancellation(boolean orderCancellation) {
 		this.orderCancellation = orderCancellation;
 	}
-
+	
 	public int getPetId() {
 		return petId;
 	}

@@ -1,6 +1,6 @@
-package app.models;
+package app.dto;
 
-public class Pet {
+public class PetDto {
 	private int id;
 	private String name;
 	private long ownerId;
@@ -9,6 +9,25 @@ public class Pet {
 	private String race;
 	private String characteristics;
 	private Double weight;
+
+	public PetDto(int id, String name, long ownerId, int age, String species, String race, String characteristics,
+			Double weight) {
+		this.id = id;
+		this.name = name;
+		this.ownerId = ownerId;
+		this.age = age;
+		this.species = species;
+		this.race = race;
+		this.characteristics = characteristics;
+		this.weight = weight;
+	}
+
+	public PetDto() {
+	}
+	
+	public PetDto(int id) {
+		this.id = id;
+	}
 
 	public int getId() {
 		return id;
@@ -25,7 +44,7 @@ public class Pet {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public long getOwnerId() {
 		return ownerId;
 	}
