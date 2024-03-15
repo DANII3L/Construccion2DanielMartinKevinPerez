@@ -6,20 +6,20 @@ import java.sql.ResultSet;
 
 import app.config.MYSQLConnection;
 import app.dto.PersonDto;
-import app.models.Person;
 
 public class PersonDaoImpl implements PersonDao {
 	public Connection connection = MYSQLConnection.getConnection();
 
 	@Override
 	public void createPerson(PersonDto personDto) throws Exception {
-		String query = "INSERT INTO PERSONA(ID,FULLNAME,ROL,USERNAME,PASSWORD) VALUES (?,?,?,?,?)";
+		String query = "INSERT INTO PERSONA(CEDULA,NOMBRE,EDAD,USERNAME,ROL,PASSWORD) VALUES (?,?,?,?,?,?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		int i = 1;
-		preparedStatement.setLong(i++, personDto.getId());
+		preparedStatement.setLong(i++, personDto.getCedula());
 		preparedStatement.setString(i++, personDto.getFullName());
-		preparedStatement.setString(i++, personDto.getRol());
+		preparedStatement.setInt(i++, personDto.getAge());
 		preparedStatement.setString(i++, personDto.getUserName());
+		preparedStatement.setString(i++, personDto.getRol());
 		preparedStatement.setString(i++, personDto.getPassword());
 		preparedStatement.execute();
 		preparedStatement.close();
@@ -27,31 +27,32 @@ public class PersonDaoImpl implements PersonDao {
 
 	@Override
 	public boolean findUserExist(PersonDto personDto) throws Exception {
-		String query = "SELECT 1 FROM PERSONA WHERE ID = ?";
+		String query = "SELECT 1 FROM PERSONA WHERE CEDULA = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
-		preparedStatement.setLong(1, personDto.getId());
+		preparedStatement.setLong(1, personDto.getCedula());
 		ResultSet resulSet = preparedStatement.executeQuery();
+		boolean existUser = resulSet.next();
 		resulSet.close();
 		preparedStatement.close();
-		return resulSet.next();
+		return existUser;
 	}
 
 	@Override
 	public PersonDto findUserById(PersonDto personDto) throws Exception {
-		String query = "SELECT ID,FULLNAME,USERNAME,PASSWORD,ROL FROM PERSONA WHERE ID = ?";
+		String query = "SELECT CEDULA,NOMBRE,EDAD,USERNAME,ROL,PASSWORD FROM PERSONA WHERE CEDULA = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
-		preparedStatement.setLong(1, personDto.getId());
+		preparedStatement.setLong(1, personDto.getCedula());
 		ResultSet resulSet = preparedStatement.executeQuery();
 		if(resulSet.next()) {
-			Person person = new Person();
-			person.setId(resulSet.getLong("ID"));
-			person.setFullName(resulSet.getString("FULLNAME"));
-			person.setRol(resulSet.getString("ROL"));
-			person.setUsername(resulSet.getString("USERNAME"));
-			person.setPassword(resulSet.getString("PASSWORD"));
+			PersonDto personDtoReturn = new PersonDto(resulSet.getLong("CEDULA"),
+					resulSet.getString("NOMBRE"),
+					resulSet.getString("ROL"),
+					resulSet.getString("USERNAME"),
+					resulSet.getString("PASSWORD"),
+					resulSet.getInt("EDAD"));
 			resulSet.close();
 			preparedStatement.close();
-			return new PersonDto(person);
+			return personDtoReturn;
 		}
 		resulSet.close();
 		preparedStatement.close();
@@ -64,27 +65,28 @@ public class PersonDaoImpl implements PersonDao {
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, personDto.getUserName());
 		ResultSet resulSet = preparedStatement.executeQuery();
+		boolean existUser = resulSet.next();
 		resulSet.close();
 		preparedStatement.close();
-		return resulSet.next();
+		return existUser;
 	}
 
 	@Override
 	public PersonDto findUserByUserName(PersonDto personDto) throws Exception {
-		String query = "SELECT ID,FULLNAME,USERNAME,PASSWORD,ROL FROM PERSONA WHERE USERNAME = ?";
+		String query = "SELECT CEDULA,NOMBRE,ROL,EDAD,USERNAME,PASSWORD FROM PERSONA WHERE USERNAME = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, personDto.getUserName());
 		ResultSet resulSet = preparedStatement.executeQuery();
 		if(resulSet.next()) {
-			Person person = new Person();
-			person.setId(resulSet.getLong("ID"));
-			person.setFullName(resulSet.getString("FULLNAME"));
-			person.setRol(resulSet.getString("ROL"));
-			person.setUsername(query);
-			person.setPassword(resulSet.getString("PASSWORD"));
+			PersonDto personDtoReturn = new PersonDto(resulSet.getLong("CEDULA"),
+					resulSet.getString("NOMBRE"),
+					resulSet.getString("ROL"),
+					resulSet.getString("USERNAME"),
+					resulSet.getString("PASSWORD"),
+					resulSet.getInt("EDAD"));
 			resulSet.close();
 			preparedStatement.close();
-			return new PersonDto(person);
+			return personDtoReturn;
 		}
 		resulSet.close();
 		preparedStatement.close();

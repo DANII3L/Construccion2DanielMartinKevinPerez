@@ -13,19 +13,19 @@ public class LoginDaoImp implements LoginDao {
 
 	@Override
 	public SessionDto login(PersonDto personDto) throws Exception {
-		String query = "INSERT INTO SESION(USERROLL,USERNAME) VALUES (?,?)";
+		String query = "INSERT INTO SESION(ROLE,USERNAME) VALUES (?,?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		int i = 1;
 		preparedStatement.setString(i++, personDto.getRol());
 		preparedStatement.setString(i++, personDto.getUserName());
 		preparedStatement.execute();
-		query = "SELECT ID,USERROLL,USERNAME FROM SESION WHERE USERNAME = ?";
+		query = "SELECT ID,ROLE,USERNAME FROM SESION WHERE USERNAME = ?";
 		preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setString(1, personDto.getUserName());
 		ResultSet resulSet = preparedStatement.executeQuery();
 		if (resulSet.next()) {
 			long id = resulSet.getLong("ID");
-			String userRol = resulSet.getString("USERROLL");
+			String userRol = resulSet.getString("ROLE");
 			String userName = resulSet.getString("USERNAME");
 			resulSet.close();
 			preparedStatement.close();
@@ -47,13 +47,13 @@ public class LoginDaoImp implements LoginDao {
 
 	@Override
 	public SessionDto findSessionById(long sessionId)throws Exception {
-		String query = "SELECT ID,USERROLL,USERNAME FROM SESION WHERE ID = ?";
+		String query = "SELECT ID,ROLE,USERNAME FROM SESION WHERE ID = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		preparedStatement.setLong(1, sessionId);
 		ResultSet resulSet = preparedStatement.executeQuery();
 		if (resulSet.next()) {
 			long id = resulSet.getLong("ID");
-			String userRol = resulSet.getString("USERROLL");
+			String userRol = resulSet.getString("ROLE");
 			String userName = resulSet.getString("USERNAME");
 			resulSet.close();
 			preparedStatement.close();

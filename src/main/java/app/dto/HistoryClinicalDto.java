@@ -1,31 +1,37 @@
 package app.dto;
 
-import java.util.Date;
+import java.sql.Date;
 import app.models.HistoryClinical;
 
 public class HistoryClinicalDto {
 	private Date date;
-	private long veterinarioId;
+	private int petId;
+	private long vetId;
 	private String reasonConsult;
 	private String symptomatology;
 	private String diagnosis;
 	private String procedure;
 	private String medicament;
-	private String medicationDosage;
-	private String orderID;
+	private int orderID;
 	private String vaccinationHistory;
+	private String medicationDosage;
 	private String drugAllergy;
 	private String detailProcedure;
-	private String orderCancellation;
+	private boolean orderCancellation;
 
 	public HistoryClinicalDto() {
 	}
+	
+	public HistoryClinicalDto(int orderID) {
+		this.orderID = orderID;
+	}
 
-	public HistoryClinicalDto(Date date, long veterinarioId, String reasonConsult, String symptomatology,
-			String diagnosis, String procedure, String medicament, String medicationDosage, String orderID,
-			String vaccinationHistory, String drugAllergy, String detailProcedure, String orderCancellation) {
+
+	public HistoryClinicalDto(long vetId, String reasonConsult, String symptomatology,
+			String diagnosis, String procedure, String medicament, String medicationDosage, int orderID,
+			String vaccinationHistory, String drugAllergy, String detailProcedure, boolean orderCancellation, Date date, int petId) {
 		this.date = date;
-		this.veterinarioId = veterinarioId;
+		this.vetId = vetId;
 		this.reasonConsult = reasonConsult;
 		this.symptomatology = symptomatology;
 		this.diagnosis = diagnosis;
@@ -37,11 +43,12 @@ public class HistoryClinicalDto {
 		this.drugAllergy = drugAllergy;
 		this.detailProcedure = detailProcedure;
 		this.orderCancellation = orderCancellation;
+		this.petId = petId;
 	}
-
+	
 	public HistoryClinicalDto(HistoryClinical historyClinical) {
-		this.veterinarioId = historyClinical.getVeterinarioId();
 		this.date = historyClinical.getDate();
+		this.vetId = historyClinical.getVetId();
 		this.reasonConsult = historyClinical.getReasonConsult();
 		this.symptomatology = historyClinical.getSymptomatology();
 		this.diagnosis = historyClinical.getDiagnosis();
@@ -53,6 +60,7 @@ public class HistoryClinicalDto {
 		this.drugAllergy = historyClinical.getDrugAllergy();
 		this.detailProcedure = historyClinical.getDetailProcedure();
 		this.orderCancellation = historyClinical.getOrderCancellation();
+		this.petId = historyClinical.getPetId();
 	}
 
 	public Date getDate() {
@@ -63,12 +71,12 @@ public class HistoryClinicalDto {
 		this.date = date;
 	}
 
-	public long getVeterinarioId() {
-		return veterinarioId;
+	public long getVetId() {
+		return vetId;
 	}
 
-	public void setVeterinarioId(long veterinarioId) {
-		this.veterinarioId = veterinarioId;
+	public void setVetId(long vetId) {
+		this.vetId = vetId;
 	}
 
 	public String getReasonConsult() {
@@ -110,20 +118,12 @@ public class HistoryClinicalDto {
 	public void setMedicament(String medicament) {
 		this.medicament = medicament;
 	}
-
-	public String getMedicationDosage() {
-		return medicationDosage;
-	}
-
-	public void setMedicationDosage(String medicationDosage) {
-		this.medicationDosage = medicationDosage;
-	}
-
-	public String getOrderID() {
+	
+	public int getOrderID() {
 		return orderID;
 	}
 
-	public void setOrderID(String orderID) {
+	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
 
@@ -133,6 +133,14 @@ public class HistoryClinicalDto {
 
 	public void setVaccinationHistory(String vaccinationHistory) {
 		this.vaccinationHistory = vaccinationHistory;
+	}
+	
+	public String getMedicationDosage() {
+		return medicationDosage;
+	}
+
+	public void setMedicationDosage(String medicationDosage) {
+		this.medicationDosage = medicationDosage;
 	}
 
 	public String getDrugAllergy() {
@@ -151,11 +159,19 @@ public class HistoryClinicalDto {
 		this.detailProcedure = detailProcedure;
 	}
 
-	public String getOrderCancellation() {
+	public boolean getOrderCancellation() {
 		return orderCancellation;
 	}
 
-	public void setOrderCancellation(String orderCancellation) {
+	public void setOrderCancellation(boolean orderCancellation) {
 		this.orderCancellation = orderCancellation;
+	}
+	
+	public int getPetId() {
+		return petId;
+	}
+
+	public void setPetId(int petId) {
+		this.petId = petId;
 	}
 }

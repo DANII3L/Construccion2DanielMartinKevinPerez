@@ -1,26 +1,41 @@
 package app.models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class HistoryClinical {
 	private Date date;
-	private long veterinarioId;
+	private int petId;
+	private long vetId;
 	private String reasonConsult;
 	private String symptomatology;
 	private String diagnosis;
 	private String procedure;
 	private String medicament;
-	private String medicationDosage;
-	private String orderID;
+	private int orderID;
 	private String vaccinationHistory;
+	private String medicationDosage;
 	private String drugAllergy;
 	private String detailProcedure;
-	private String orderCancellation;
-	
-	public HistoryClinical() {
+	private boolean orderCancellation;
+
+	public HistoryClinical(int petId, long vetId, String reasonConsult, String symptomatology, String diagnosis,
+			String procedure, String medicament, String vaccinationHistory, String medicationDosage,
+			String drugAllergy, String detailProcedure, boolean orderCancellation) {
+		this.petId = petId;
+		this.vetId = vetId;
+		this.reasonConsult = reasonConsult;
+		this.symptomatology = symptomatology;
+		this.diagnosis = diagnosis;
+		this.procedure = procedure;
+		this.medicament = medicament;
+		this.vaccinationHistory = vaccinationHistory;
+		this.medicationDosage = medicationDosage;
+		this.drugAllergy = drugAllergy;
+		this.detailProcedure = detailProcedure;
+		this.orderCancellation = orderCancellation;
 		this.date = new Date(System.currentTimeMillis());
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
@@ -29,12 +44,12 @@ public class HistoryClinical {
 		this.date = date;
 	}
 
-	public long getVeterinarioId() {
-		return veterinarioId;
+	public long getVetId() {
+		return vetId;
 	}
 
-	public void setVeterinarioId(long veterinarioId) {
-		this.veterinarioId = veterinarioId;
+	public void setVetId(long vetId) {
+		this.vetId = vetId;
 	}
 
 	public String getReasonConsult() {
@@ -77,19 +92,11 @@ public class HistoryClinical {
 		this.medicament = medicament;
 	}
 
-	public String getMedicationDosage() {
-		return medicationDosage;
-	}
-
-	public void setMedicationDosage(String medicationDosage) {
-		this.medicationDosage = medicationDosage;
-	}
-
-	public String getOrderID() {
+	public int getOrderID() {
 		return orderID;
 	}
 
-	public void setOrderID(String orderID) {
+	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
 
@@ -99,6 +106,14 @@ public class HistoryClinical {
 
 	public void setVaccinationHistory(String vaccinationHistory) {
 		this.vaccinationHistory = vaccinationHistory;
+	}
+
+	public String getMedicationDosage() {
+		return medicationDosage;
+	}
+
+	public void setMedicationDosage(String medicationDosage) {
+		this.medicationDosage = medicationDosage;
 	}
 
 	public String getDrugAllergy() {
@@ -117,11 +132,19 @@ public class HistoryClinical {
 		this.detailProcedure = detailProcedure;
 	}
 
-	public String getOrderCancellation() {
+	public boolean getOrderCancellation() {
 		return orderCancellation;
 	}
 
-	public void setOrderCancellation(String orderCancellation) {
+	public void setOrderCancellation(boolean orderCancellation) {
 		this.orderCancellation = orderCancellation;
+	}
+
+	public int getPetId() {
+		return petId;
+	}
+
+	public void setPetId(int petId) {
+		this.petId = petId;
 	}
 }

@@ -3,9 +3,10 @@ package app.dto;
 import app.models.Person;
 
 public class PersonDto {
-	private long id;
+	private long cedula;
 	private String fullName;
 	private String rol;
+	private int Age;
 	private String userName;
 	private String password;
 	
@@ -13,32 +14,38 @@ public class PersonDto {
 		this.userName = userName;
 		this.password = password;
 	}
+	
+	public PersonDto(long cedula) {
+		this.cedula = cedula;
+	}
 
-	public PersonDto(long id, String fullName, String rol, String userName, String password) {
-		this.id = id;
+	public PersonDto(long cedula, String fullName, String rol, String userName, String password, int age) {
+		this.cedula = cedula;
 		this.fullName = fullName;
 		this.rol = rol;
 		this.userName = userName;
 		this.password = password;
+		this.Age = age;
 	}
 
 	public PersonDto(Person person) {
-		this.id = person.getId();
+		this.cedula = person.getCedula();
 		this.fullName = person.getFullName();
-		this.rol = person.getRoll();
+		this.rol = person.getRol();
 		this.userName = person.getUsername();
 		this.password = person.getPassword();
+		this.Age = person.getAge();
 	}
 
 	public PersonDto() {
 	}
 
-	public long getId() {
-		return id;
+	public long getCedula() {
+		return cedula;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setCedula(long cedula) {
+		this.cedula = cedula;
 	}
 
 	public String getFullName() {
@@ -56,7 +63,14 @@ public class PersonDto {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
+	
+	public int getAge() {
+		return Age;
+	}
 
+	public void setAge(int age) {
+		Age = age;
+	}
 	public String getUserName() {
 		return userName;
 	}

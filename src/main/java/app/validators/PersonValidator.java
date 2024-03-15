@@ -20,4 +20,8 @@ public class PersonValidator extends InputsValidators {
 	public void passwordValidator(String password) throws Exception {
 		super.stringValidator(password, "Contraseña de usuario");
 	}
+	
+	public int ageValidator(String age) throws Exception {
+		return super.integerValidator(age, "Edad de usuario");
+	}
 }
