@@ -1,36 +1,39 @@
 package app.dto;
 
-import app.models.Pet;
-
 public class PetDto {
-	private String id;
+	private int id;
 	private String name;
 	private long ownerId;
 	private int age;
 	private String species;
 	private String race;
 	private String characteristics;
-	private String weight;
-	
-	public PetDto(Pet pet) {
-		this.id = pet.getId();
-		this.name = pet.getName();
-		this.ownerId = pet.getOwnerId();
-		this.age = pet.getAge();
-		this.species = pet.getSpecies();
-		this.race = pet.getRace();
-		this.characteristics = pet.getCharacteristics();
-		this.weight = pet.getWeight();
-	}
-	
-	public PetDto() {
+	private Double weight;
+
+	public PetDto(int id, String name, long ownerId, int age, String species, String race, String characteristics,
+			Double weight) {
+		this.id = id;
+		this.name = name;
+		this.ownerId = ownerId;
+		this.age = age;
+		this.species = species;
+		this.race = race;
+		this.characteristics = characteristics;
+		this.weight = weight;
 	}
 
-	public String getId() {
+	public PetDto() {
+	}
+	
+	public PetDto(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -41,7 +44,7 @@ public class PetDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public long getOwnerId() {
 		return ownerId;
 	}
@@ -82,11 +85,11 @@ public class PetDto {
 		this.characteristics = characteristics;
 	}
 
-	public String getWeight() {
+	public Double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
 }

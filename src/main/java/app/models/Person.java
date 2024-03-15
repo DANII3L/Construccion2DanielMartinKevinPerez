@@ -1,18 +1,19 @@
 package app.models;
 
 public class Person {
-	private long id;
+	private long cedula;
 	private String fullName;
-	private String roll;
+	private String rol;
+	private int Age;
 	private String username;
 	private String password;
 
-	public long getId() {
-		return id;
+	public long getCedula() {
+		return cedula;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setCedula(long cedula) {
+		this.cedula = cedula;
 	}
 
 	public String getFullName() {
@@ -23,13 +24,22 @@ public class Person {
 		this.fullName = fullName;
 	}
 
-	public String getRoll() {
-		return roll;
+	public String getRol() {
+		return rol;
 	}
 
-	public void setRol(String roll) {
-		this.roll = roll;
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
+	
+	public int getAge() {
+		return Age;
+	}
+
+	public void setAge(int age) {
+		Age = age;
+	}
+
 
 	public String getUsername() {
 		return username;

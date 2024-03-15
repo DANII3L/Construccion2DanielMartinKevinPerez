@@ -1,20 +1,20 @@
 package app.models;
 
 public class Pet {
-	private String id;
+	private int id;
 	private String name;
 	private long ownerId;
 	private int age;
 	private String species;
 	private String race;
 	private String characteristics;
-	private String weight;
+	private Double weight;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -66,11 +66,11 @@ public class Pet {
 		this.characteristics = characteristics;
 	}
 
-	public String getWeight() {
+	public Double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
 }
